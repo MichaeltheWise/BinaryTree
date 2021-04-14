@@ -93,7 +93,7 @@ class Tree(dict):
             node.right = self._remove_num(node.right, temp.val)
         return node
 
-    def minValNode(self, node):
+    def minValNode(node):
         """
         Cases where both child exists, need to find the minimum val node by going down the left child of left tree
         :param node: node
@@ -231,7 +231,7 @@ class Tree(dict):
         self._print_Right_Tree(node.right, level + 1, max_level, res)
         return res
 
-    # More functions
+    # Extension: more functions for fun
     def maximum_depth(self):
         """
         Binary Tree Maximum Depth Calculation
@@ -308,7 +308,7 @@ def main():
     print("PRINT RIGHT TREE")
     print(tree.printRightTree())
     print("PRINT MINIMUM DISTANCE FROM 5 AND 7")
-    print(tree.shortest_dist_extraction([5, 7]))
+    print(tree.shortest_dist([5, 7]))
 
 
 if __name__ == '__main__':
