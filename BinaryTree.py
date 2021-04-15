@@ -33,6 +33,9 @@ class Tree(dict):
     def __len__(self):
         return len(self.printTree())
 
+    def __reversed__(self):
+        return self.printTree()[::-1]
+
     def insert(self, num):
         """
         Binary tree insertion
@@ -148,18 +151,18 @@ class Tree(dict):
         :return: List of tree values
         """
         if self.root is not None:
-            return self._print_Tree(self.root, res=[])
+            return self._inorder_traversal(self.root, res=[])
 
-    def _print_Tree(self, node, res=[]):
+    def _inorder_traversal(self, node, res=[]):
         """
         Implementation of inorder traversal printing
         :param node: node
         :return: List of tree values
         """
         if node is not None:
-            self._print_Tree(node.left, res)
+            self._inorder_traversal(node.left, res)
             res.append(node.val)
-            self._print_Tree(node.right, res)
+            self._inorder_traversal(node.right, res)
             return res
 
     def averageTree(self):
@@ -327,6 +330,8 @@ def main():
     print(2 in tree)
     print("TEST OUT CALL")
     tree()
+    print("TEST OUT REVERSED")
+    print(reversed(tree))
     print("TEST OUT LENGTH")
     print(len(tree))
 
