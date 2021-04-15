@@ -19,9 +19,19 @@ class Node(dict):
 class Tree(dict):
     def __init__(self):
         super(Tree, self).__init__()
+        self.__dict__ = self
         self.root = None
         self.sum = 0
         self.count = 0
+
+    def __contains__(self, key):
+        return self.find(key)
+
+    def __call__(self):
+        print(self.printTree())
+
+    def __len__(self):
+        return len(self.printTree())
 
     def insert(self, num):
         """
@@ -93,7 +103,7 @@ class Tree(dict):
             node.right = self._remove_num(node.right, temp.val)
         return node
 
-    def minValNode(node):
+    def minValNode(self, node):
         """
         Cases where both child exists, need to find the minimum val node by going down the left child of left tree
         :param node: node
@@ -288,9 +298,9 @@ class Tree(dict):
 def main():
     # Testing before test is added
     tree = Tree()
-    tree.insert(2)
-    tree.insert(6)
     tree.insert(0)
+    tree.insert(6)
+    tree.insert(2)
     tree.insert(7)
     tree.insert(5)
     print("FIRST ROUND")
@@ -309,6 +319,16 @@ def main():
     print(tree.printRightTree())
     print("PRINT MINIMUM DISTANCE FROM 5 AND 7")
     print(tree.shortest_dist([5, 7]))
+
+    # Dunder Method Test
+    print("\nTEST OUT CONTAIN")
+    print(6 in tree)
+    print(3 in tree)
+    print(2 in tree)
+    print("TEST OUT CALL")
+    tree()
+    print("TEST OUT LENGTH")
+    print(len(tree))
 
 
 if __name__ == '__main__':
